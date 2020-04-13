@@ -19,7 +19,7 @@ class UserSearch extends User
 
     public function init()
     {
-        $this->statusForSearch = User::STATUS_ACTIVE;;
+        $this->statusForSearch = User::STATUS_ACTIVE;
     }
 
     /**
