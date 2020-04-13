@@ -4,12 +4,12 @@ namespace app\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Rooms;
+use app\models\BookedRooms;
 
 /**
- * RoomsSearch represents the model behind the search form of `app\models\Rooms`.
+ * BookedRoomsSearch represents the model behind the search form of `app\models\BookedRooms`.
  */
-class RoomsSearch extends Rooms
+class BookedRoomsSearch extends BookedRooms
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class RoomsSearch extends Rooms
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'description'], 'safe'],
+            [['id', 'room_id', 'user_id', 'day_calc', 'creates_at'], 'integer'],
+            [['user_name', 'phone', 'day'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class RoomsSearch extends Rooms
      */
     public function search($params)
     {
-        $query = Rooms::find();
+        $query = BookedRooms::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +59,15 @@ class RoomsSearch extends Rooms
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'room_id' => $this->room_id,
+            'user_id' => $this->user_id,
+            'day' => $this->day,
+            'day_calc' => $this->day_calc,
+            'creates_at' => $this->creates_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'user_name', $this->user_name])
+            ->andFilterWhere(['like', 'phone', $this->phone]);
 
         return $dataProvider;
     }

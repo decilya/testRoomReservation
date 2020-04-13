@@ -74,8 +74,14 @@ $this->title = Yii::$app->params['systemName'];
                 echo Nav::widget([
                     'options' => ['class' => 'navbar-nav pull-right'],
                     'items' => [
-                        (Yii::$app->user->identity->type)  ?
-                            ['label' => 'Список номеров', 'url' => ['/site/rooms']] : '',
+                        (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
+                            ['label' => 'Список забронированных номеров', 'url' => ['/admin/room/index']] : '',
+
+                        (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
+                            ['label' => 'Список номеров', 'url' => ['/admin/room/index']] : '',
+
+                        (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
+                            ['label' => 'Пользователи', 'url' => ['/admin/default/users']] : '',
 
                         Yii::$app->user->isGuest ? (
                         ['label' => 'Войти', 'url' => ['/site/login']]

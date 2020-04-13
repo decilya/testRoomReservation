@@ -43,10 +43,10 @@ $this->title = Yii::$app->params['systemName'];
             'options' => ['class' => 'navbar-nav pull-right'],
             'items' => [
                 (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
-                    ['label' => 'Список забронированных номеров', 'url' => ['/admin/default/List_booked_rooms']] : '',
+                    ['label' => 'Список забронированных номеров', 'url' => ['/admin/room/index']] : '',
 
                 (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
-                    ['label' => 'Справочник номеров гостиницы', 'url' => ['/admin/default/directory_rooms']] : '',
+                        ['label' => 'Список номеров', 'url' => ['/admin/room/index']] : '',
 
                 (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
                     ['label' => 'Пользователи', 'url' => ['/admin/default/users']] : '',
