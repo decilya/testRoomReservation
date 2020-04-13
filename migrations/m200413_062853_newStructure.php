@@ -16,7 +16,7 @@ class m200413_062853_newStructure extends Migration
         if ($this->db->driverName === 'mysql') {
             $tableOptions = Yii::$app->params['tableOptions'];
         }
-        
+
         $this->createTable('rooms', [
             'id' => $this->primaryKey(),
             'name' => $this->string(125)->notNull(),
@@ -34,6 +34,8 @@ class m200413_062853_newStructure extends Migration
             'creates_at' => $this->integer(11)->null(),
         ], $tableOptions);
 
+        $this->createIndex('idx-room_id', 'booked_rooms', 'room_id');
+        $this->addForeignKey('fk-room_id', 'booked_rooms', 'room_id', 'rooms', 'id', 'CASCADE', 'CASCADE');
     }
 
     /**
