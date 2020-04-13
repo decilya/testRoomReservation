@@ -14,7 +14,7 @@ class m200412_225019_startProject extends Migration
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+            $tableOptions = Yii::$app->params['tableOptions'];
         }
 
         $this->createTable('user', [
