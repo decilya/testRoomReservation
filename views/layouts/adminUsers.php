@@ -43,7 +43,7 @@ $this->title = Yii::$app->params['systemName'];
             'options' => ['class' => 'navbar-nav pull-right'],
             'items' => [
                 (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
-                    ['label' => 'Список забронированных номеров', 'url' => ['/admin/room/index']] : '',
+                    ['label' => 'Список забронированных номеров', 'url' => ['/admin/books-room/index']] : '',
 
                 (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
                         ['label' => 'Список номеров', 'url' => ['/admin/room/index']] : '',

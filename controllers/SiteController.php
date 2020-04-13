@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Rooms;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -124,5 +125,16 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionBooksRoom()
+    {
+        /** @var Rooms $rooms */
+        $rooms = Rooms::find()->with('bookedRooms')->all();
+
+        echo "<pre>";
+        print_r($rooms);
+        echo "</pre>";
+
     }
 }
