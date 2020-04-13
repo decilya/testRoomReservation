@@ -16,9 +16,7 @@ class m200413_062853_newStructure extends Migration
         if ($this->db->driverName === 'mysql') {
             $tableOptions = Yii::$app->params['tableOptions'];
         }
-
-        $this->dropTable('rooms');
-
+        
         $this->createTable('rooms', [
             'id' => $this->primaryKey(),
             'name' => $this->string(125)->notNull(),
