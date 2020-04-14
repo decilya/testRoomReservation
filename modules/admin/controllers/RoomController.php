@@ -8,6 +8,8 @@ use app\models\search\RoomsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\User;
+use yii\web\HttpException;
 
 /**
  * RoomController implements the CRUD actions for Rooms model.
@@ -27,6 +29,17 @@ class RoomController extends Controller
                 ],
             ],
         ];
+    }
+
+        public function beforeAction($action)
+    {
+        $this->layout = '@app/views/layouts/adminUsers';
+
+        if (isset(Yii::$app->user->identity->type) && (Yii::$app->user->identity->type !== User::TYPE_USER_ADMIN)) {
+            throw new HttpException('403', 'Отказано в доступе!');
+        }
+
+        return parent::beforeAction($action);
     }
 
     /**

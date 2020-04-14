@@ -58,7 +58,7 @@ class DefaultController extends Controller
         $this->defaultAction = 'users';
         $this->layout = '@app/views/layouts/adminUsers';
 
-        if (isset(Yii::$app->user->identity->type) && (Yii::$app->user->identity->type !== User::TYPE_USER_ADMIN)) {
+        if (isset(Yii::$app->user->identity->type) && (Yii::$app->user->identity->type != User::TYPE_USER_ADMIN)) {
             throw new HttpException('403', 'Отказано в доступе!');
         }
 

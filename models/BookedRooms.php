@@ -42,6 +42,14 @@ class BookedRooms extends \yii\db\ActiveRecord
         ];
     }
 
+    public function init()
+    {
+        parent::init();
+
+        $this->day_calc = 1;
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -49,13 +57,13 @@ class BookedRooms extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'room_id' => 'Room ID',
-            'user_name' => 'User Name',
-            'user_id' => 'User ID',
-            'phone' => 'Phone',
-            'day' => 'Day',
-            'day_calc' => 'Day Calc',
-            'creates_at' => 'Creates At',
+            'room_id' => 'Номер комнаты',
+            'user_name' => 'Имя клиента',
+            'user_id' => 'ID пользоваителя',
+            'phone' => 'Телефон',
+            'day' => 'Дата бронирования',
+            'day_calc' => 'Кол-во дней бронирвоания',
+            'creates_at' => 'Дата создания',
         ];
     }
 

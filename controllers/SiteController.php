@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\BookedRooms;
 use app\models\Rooms;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -53,6 +55,18 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        $this->layout = '@app/views/layouts/main';
+
+        return parent::beforeAction($action);
     }
 
     /**
@@ -132,9 +146,12 @@ class SiteController extends Controller
         /** @var Rooms $rooms */
         $rooms = Rooms::find()->with('bookedRooms')->all();
 
-        echo "<pre>";
-        print_r($rooms);
-        echo "</pre>";
+//        echo "<pre>";
+//        print_r($rooms);
+//        echo "</pre>";
 
+        return $this->render('books_room', [
+            'rooms' => $rooms,
+        ]);
     }
 }

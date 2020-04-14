@@ -46,7 +46,7 @@ $this->title = Yii::$app->params['systemName'];
                     ['label' => 'Список забронированных номеров', 'url' => ['/admin/books-room/index']] : '',
 
                 (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
-                        ['label' => 'Список номеров', 'url' => ['/admin/room/index']] : '',
+                    ['label' => 'Список номеров', 'url' => ['/admin/room/index']] : '',
 
                 (Yii::$app->user->identity->type == \app\models\User::TYPE_USER_ADMIN) ?
                     ['label' => 'Пользователи', 'url' => ['/admin/default/users']] : '',

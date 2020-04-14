@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\admin\controllers;
+use app\models\User;
 use Yii;
 use app\models\BookedRooms;
 use app\models\search\BookedRoomsSearch;
@@ -27,6 +28,18 @@ class BooksRoomController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+    {
+        $this->layout = '@app/views/layouts/adminUsers';
+
+        if (isset(Yii::$app->user->identity->type) && (Yii::$app->user->identity->type !== User::TYPE_USER_ADMIN)) {
+            throw new HttpException('403', 'Отказано в доступе!');
+        }
+
+        return parent::beforeAction($action);
+    }
+
 
     /**
      * Lists all BookedRooms models.
