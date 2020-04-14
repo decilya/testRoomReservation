@@ -7,27 +7,30 @@
 
 namespace app\assets;
 
+use yii\base\View;
 use yii\web\AssetBundle;
 
 /**
- * Main application asset bundle.
- *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class MaskAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
     ];
+
     public $js = [
+		'libs/mask/jquery.inputmask.js',
+		'libs/mask/jquery.inputmask.bundle.js',
+		'libs/mask/jquery.bind-first.js',
+		'libs/mask/jquery.inputmask-multi.js',
+		'js/mask.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        'app\assets\BootboxAsset',
-        'app\assets\MaskAsset',
+        'yii\web\JqueryAsset',
     ];
+
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 }

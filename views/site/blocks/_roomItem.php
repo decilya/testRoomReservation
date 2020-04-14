@@ -1,6 +1,7 @@
 <?php
 
 use kartik\date\DatePicker;
+use app\assets\MaskAsset;
 
 /**
  * @var  \app\models\Rooms $room ;
@@ -39,7 +40,7 @@ use kartik\date\DatePicker;
 
     <div class="col-lg-2 col-md-2 col-sm-2">
         <div class="roomPhone">
-            <?= $form->field(new \app\models\BookedRooms(), 'phone')->textInput(['id'=>'phone' . $room->id]); ?>
+            <?= $form->field(new \app\models\BookedRooms(), 'phone')->textInput(['id'=>'phone' . $room->id, 'class' => 'mask']); ?>
         </div>
     </div>
 
