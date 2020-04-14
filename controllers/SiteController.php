@@ -154,4 +154,39 @@ class SiteController extends Controller
             'rooms' => $rooms,
         ]);
     }
+
+    public function actionBookNow()
+    {
+        // Если это не аякс или post, то просто дальше не будем обрабатывать скрипт
+        if ((!Yii::$app->request->isAjax) || (!Yii::$app->request->isPost)) {
+            return false;
+        }
+
+        /** @var BookedRooms $bookedRooms */
+        $bookedRooms = new BookedRooms();
+        $bookedRooms->room_id = Yii::$app->request->post('roomId');
+        $bookedRooms->phone = Yii::$app->request->post('phone');
+        $bookedRooms->user_name = Yii::$app->request->post('userName');
+        $bookedRooms->day = Yii::$app->request->post('day');
+        $bookedRooms->day_calc = Yii::$app->request->post('dayCalc');
+        if ($bookedRooms->day_calc > 0 ) {
+            $bookedRooms->day_finish = date('Y-m-d', strtotime("+" . $bookedRooms->day_calc - 1 . "days"));
+        }
+        $bookedRooms->user_id = isset(Yii::$app->user->identity->id) ? Yii::$app->user->identity->id : null;
+
+        $oldBookedRooms = BookedRooms::find()
+            ->where(['day' => $bookedRooms->day])
+            ->andWhere(['day_finish' => $bookedRooms->day_finish])
+            ->one();
+
+        if (empty($oldBookedRooms)) {
+            if ($bookedRooms->save()) {
+                return json_encode(true);
+            } else {
+                return json_encode($bookedRooms->errors);
+            }
+        } else {
+            return json_encode(false);
+        }
+    }
 }

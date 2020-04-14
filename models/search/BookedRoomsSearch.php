@@ -17,8 +17,8 @@ class BookedRoomsSearch extends BookedRooms
     public function rules()
     {
         return [
-            [['id', 'room_id', 'user_id', 'day_calc', 'creates_at'], 'integer'],
-            [['user_name', 'phone', 'day'], 'safe'],
+            [['id', 'room_id', 'user_id', 'day_calc', 'created_at'], 'integer'],
+            [['user_name', 'phone', 'day', 'day_finish'], 'safe'],
         ];
     }
 
@@ -63,7 +63,8 @@ class BookedRoomsSearch extends BookedRooms
             'user_id' => $this->user_id,
             'day' => $this->day,
             'day_calc' => $this->day_calc,
-            'creates_at' => $this->creates_at,
+            'day_finish' => $this->day_finish,
+            'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'user_name', $this->user_name])

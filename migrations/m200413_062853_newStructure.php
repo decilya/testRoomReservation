@@ -30,8 +30,9 @@ class m200413_062853_newStructure extends Migration
             'user_id' => $this->integer(11)->null(),
             'phone' => $this->string(250)->notNull(),
             'day' => 'datetime',
+            'day_finish' => 'datetime',
             'day_calc' => $this->integer(11)->null(),
-            'creates_at' => $this->integer(11)->null(),
+            'created_at' => $this->integer(11)->null(),
         ], $tableOptions);
 
         $this->createIndex('idx-room_id', 'booked_rooms', 'room_id');
@@ -43,6 +44,9 @@ class m200413_062853_newStructure extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('fk-room_id', 'booked_rooms');
+        $this->dropIndex('idx-room_id', 'booked_rooms');
+
         $this->dropTable('rooms');
         $this->dropTable('booked_rooms');
     }

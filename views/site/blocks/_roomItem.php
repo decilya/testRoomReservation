@@ -24,11 +24,11 @@ use app\assets\MaskAsset;
 
     <?php
     $form = \yii\widgets\ActiveForm::begin([
-            'enableAjaxValidation' => true,
-            'options' => [
-                'name' => 'day_' . $room->id,
-                'id' => 'day_' . $room->id,
-            ]
+        'enableAjaxValidation' => true,
+        'options' => [
+            'name' => 'day_' . $room->id,
+            'id' => 'day_' . $room->id,
+        ]
     ]);
     ?>
 
@@ -48,7 +48,7 @@ use app\assets\MaskAsset;
         <label> Дата бронирования
             <?= DatePicker::widget([
                 'name' => 'datetime' . $room->id,
-                'id' => 'datetime' . $room->id,
+                'id' => 'day' . $room->id,
                 'options' => [
                     'placeholder' => 'Select operating time ...',
                 ],
@@ -68,7 +68,7 @@ use app\assets\MaskAsset;
 
     <div class="col-lg-2 col-md-2 col-sm-2">
         <div class="roomBtn">
-            <a id="bookNow" class="btn btn-success" data-room="<?= $room->id; ?>">Забронировать</a>
+            <a class="bookNow btn btn-success" data-room="<?= $room->id; ?>">Забронировать</a>
         </div>
     </div>
 </div>
